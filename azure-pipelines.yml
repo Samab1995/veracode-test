@@ -26,6 +26,6 @@ steps:
     AnalysisService: 'Veracode API'
     veracodeAppProfile: 'Azure Test'
     version: '$(build.buildNumber)'
-    filepath: '$(build.artifactstagingdirectory)'
+    filepath: '$(build.artifactstagingdirectory)/azure-pipelines.yml'
     sandboxName: 'Azure Build Test'
     maximumWaitTime: '60'
