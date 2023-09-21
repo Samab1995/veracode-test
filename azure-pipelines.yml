@@ -24,8 +24,13 @@ steps:
   inputs:
     ConnectionDetailsSelection: 'Service Connection'
     AnalysisService: 'Veracode API'
-    veracodeAppProfile: 'Azure Test'
+    veracodeAppProfile: 'Testing_New_Build'
     version: '$(build.buildNumber)'
     filepath: '$(build.artifactstagingdirectory)'
-    sandboxName: 'Azure Build Test'
+    sandboxName: 'Azure_Build_Test'
+    createSandBox: true
+    createProfile: true
+    failBuildIfUploadAndScanBuildStepFails: true
+    importResults: true
+    failBuildOnPolicyFail: true
     maximumWaitTime: '60'
