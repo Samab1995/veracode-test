@@ -20,6 +20,22 @@ steps:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
 
+- task: Bash@3
+  displayName: Veracode CLI SCA & SBOM Generation
+  
+  inputs:
+    targetType: inline
+    script: |
+      pwd
+      #export VERACODE_API_KEY_ID=$(VERACODE_API_ID)
+      #export VERACODE_API_KEY_SECRET=$(VERACODE_API_KEY)
+      #echo $VERACODE_API_KEY_ID
+      curl -fsS https://tools.veracode.com/veracode-cli/install | sh
+      ./veracode version
+      ./veracode configure << $($(VERACODE_API_ID))
+      $($(VERACODE_API_KEY))
+      ./veracode scan --source https://github.com/Samab1995/example-ruby --type repo --format table
+
 - task: Veracode@3
   inputs:
     ConnectionDetailsSelection: 'Service Connection'
