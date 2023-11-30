@@ -15,7 +15,7 @@ steps:
     AnalysisService: 'Veracode API'
     failBuildIfFlawImporterFails: true
     veracodeAppProfile: 'Test Azure'
-    sandboxName: 'Azure Flaw Importer New'
+    sandboxName: 'Azure Flaw Importer'
     scanType: 'Static, SCA'
     importType: 'All Flaws'
     workItemType: 'Issue'
