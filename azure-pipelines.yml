@@ -26,7 +26,7 @@ steps:
     AnalysisService: 'Veracode API'
     veracodeAppProfile: 'Test Azure'
     version: '$(build.buildNumber)'
-    filepath: 'app/target/**.war'
+    filepath: '/Users/soumikroy/myagent/_work/1/s/app/target/veracode.war'
     sandboxName: 'Azure Flaw Importer'
     createSandBox: true
     createProfile: true
