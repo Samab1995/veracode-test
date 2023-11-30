@@ -18,8 +18,8 @@ steps:
     sandboxName: 'Azure Flaw Importer'
     scanType: 'Static, SCA'
     importType: 'All Flaws'
-    workItemType: 'Issue'
+    workItemType: 'Bug'
     area: '$(system.teamProject)'
     overwriteAreaPathInWorkItemsOnImport: true
     iterationPath: '$(system.teamProject)'
-    flawImportLimit: '10'
+    flawImportLimit: '20'
