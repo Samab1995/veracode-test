@@ -20,33 +20,32 @@ steps:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
 
-- task: Bash@3
-  displayName: Veracode CLI SCA & SBOM Generation
-  
-  inputs:
-    targetType: inline
-    script: |
-      pwd
-      #export VERACODE_API_KEY_ID=$(VERACODE_API_ID)
-      #export VERACODE_API_KEY_SECRET=$(VERACODE_API_KEY)
-      #echo $VERACODE_API_KEY_ID
-      curl -fsS https://tools.veracode.com/veracode-cli/install | sh
-      ./veracode version
-      ./veracode configure << $($(VERACODE_API_ID))
-      $($(VERACODE_API_KEY))
-      ./veracode scan --source https://github.com/Samab1995/example-ruby --type repo --format table
-
 - task: Veracode@3
   inputs:
     ConnectionDetailsSelection: 'Service Connection'
     AnalysisService: 'Veracode API'
-    veracodeAppProfile: 'Testing_New_Build'
+    veracodeAppProfile: 'Test Azure'
     version: '$(build.buildNumber)'
     filepath: '$(build.artifactstagingdirectory)'
-    sandboxName: 'Azure_Build_Test'
+    sandboxName: 'Azure Flaw Importer'
     createSandBox: true
     createProfile: true
     failBuildIfUploadAndScanBuildStepFails: true
     importResults: true
     failBuildOnPolicyFail: true
     maximumWaitTime: '60'
+
+- task: Veracode Flaw Importer@3
+  inputs:
+    ConnectionDetailsSelection: 'Service Connection'
+    AnalysisService: 'Veracode API'
+    failBuildIfFlawImporterFails: true
+    veracodeAppProfile: 'Test Azure'
+    sandboxName: 'Azure Flaw Importer'
+    scanType: 'Static, SCA'
+    importType: 'All Flaws'
+    workItemType: 'Issue'
+    area: '$(system.teamProject)'
+    overwriteAreaPathInWorkItemsOnImport: true
+    iterationPath: '$(system.teamProject)'
+    flawImportLimit: '10'
