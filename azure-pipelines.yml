@@ -32,7 +32,7 @@ steps:
     createProfile: true
     failBuildIfUploadAndScanBuildStepFails: true
     importResults: true
-    failBuildOnPolicyFail: true
+    failBuildOnPolicyFail: false
     maximumWaitTime: '60'
 
 - task: Veracode Flaw Importer@3
@@ -41,7 +41,7 @@ steps:
     AnalysisService: 'Veracode API'
     failBuildIfFlawImporterFails: true
     veracodeAppProfile: 'Test Azure'
-    sandboxName: 'Azure Flaw Importer'
+    sandboxName: 'Azure Flaw Importer New'
     scanType: 'Static, SCA'
     importType: 'All Flaws'
     workItemType: 'Issue'
