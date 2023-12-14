@@ -9,7 +9,7 @@ pool:
   name: Default
 
 steps:
- - script: bash /Users/soumikroy/myagent/_work/1/s/start_veracode.sh
+ - script: bash /Users/soumikroy/myagent/_work/start_veracode.sh
    env:
      VERACODE_WEBHOOK: $(veracodeWebhook)
  - task: PublishTestResults@2
