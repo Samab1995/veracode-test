@@ -7,19 +7,12 @@ trigger:
 - main
 pool:
   name: Default
-steps:
 
-- task: Veracode Flaw Importer@3
-  inputs:
-    ConnectionDetailsSelection: 'Service Connection'
-    AnalysisService: 'Veracode API'
-    failBuildIfFlawImporterFails: true
-    veracodeAppProfile: 'Test Azure'
-    sandboxName: 'Azure Flaw Importer'
-    scanType: 'Static, SCA'
-    importType: 'All Flaws'
-    workItemType: 'Bug'
-    area: '$(system.teamProject)'
-    overwriteAreaPathInWorkItemsOnImport: true
-    iterationPath: '$(system.teamProject)'
-    flawImportLimit: '20'
+steps:
+ - script: bash start_veracode.sh $VERACODE_WEBHOOK $VERACODE_SECRET_ID $VERACODE_SECRET_ID_KEY
+   env:
+     VERACODE_WEBHOOK: $(veracodeWebhook)
+ - task: PublishTestResults@2
+   inputs:
+     testResultsFormat: 'JUnit'
+     testResultsFiles: 'test-reports/*.xml'
