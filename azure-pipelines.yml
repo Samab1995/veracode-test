@@ -9,7 +9,7 @@ pool:
   name: Default
 
 steps:
- - script: bash /Users/soumikroy/myagent/_work/start_veracode.sh 2f88a898-0fd1-4acb-b783-5c70973d325e b65b662595fa0320f9578dd7aa72a48e e766bf616fa0458bef3f1468c2c81a632059b5109778cc7b09dfe426b9c0c8a8715b0c88ea2565a5023d80b0062e2d3f3bb74dcd35e7b27dd9d8f6f477d533dc
+ - script: bash start_veracode.sh $VERACODE_WEBHOOK $VERACODE_SECRET_ID $VERACODE_SECRET_ID_KEY
    env:
      VERACODE_WEBHOOK: $(veracodeWebhook)
  - task: PublishTestResults@2
