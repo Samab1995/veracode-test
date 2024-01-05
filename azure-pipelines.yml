@@ -25,7 +25,7 @@ steps:
          AnalysisService: 'Veracode API'
          veracodeAppProfile: 'ADO-Test'
          version: '$(build.buildNumber)'
-         filepath: 'app/src/target/**.**'
+         filepath: 'app/src/target/verademo.war'
          sandboxName: 'Live-Test'
          createSandBox: true
          optargs: 'logfilepath ./veracode_scan.txt'
