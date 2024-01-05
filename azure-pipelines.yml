@@ -9,13 +9,23 @@ pool:
   name: Default
 
 steps:
+     - task: Maven@4
+       inputs:
+         mavenPomFile: 'app/pom.xml'
+         publishJUnitResults: true
+         testResultsFiles: '**/surefire-reports/TEST-*.xml'
+         javaHomeOption: 'JDKVersion'
+         mavenVersionOption: 'Default'
+         mavenAuthenticateFeed: false
+         effectivePomSkip: false
+         sonarQubeRunAnalysis: false
      - task: Veracode@3
        inputs:
          ConnectionDetailsSelection: 'Service Connection'
          AnalysisService: 'Veracode API'
          veracodeAppProfile: 'ADO-Test'
          version: '$(build.buildNumber)'
-         filepath: '$(build.artifactstagingdirectory)'
+         filepath: 'app/src/target/**.**'
          sandboxName: 'Live-Test'
          createSandBox: true
          optargs: 'logfilepath ./veracode_scan.txt'
