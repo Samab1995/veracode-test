@@ -28,7 +28,7 @@ steps:
          filepath: 'app/target/verademo.war'
          sandboxName: 'Live-Test'
          createSandBox: true
-         optargs: 'logfilepath  /Users/soumikroy/myagent/_work/1/s/veracode_scan.txt'
+         optargs: '-logfilepath /Users/soumikroy/myagent/_work/1/s/veracode_scan.txt -deleteincompletescan 2'
          createProfile: true
          failBuildIfUploadAndScanBuildStepFails: true
          importResults: true
